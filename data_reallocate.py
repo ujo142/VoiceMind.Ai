@@ -2,10 +2,21 @@ import os
 import shutil
 
 SOURCE_PATH = os.getcwd()
-BASE_PATH = os.path.join(SOURCE_PATH  'data', 'archive-6')
+BASE_PATH = os.path.join(SOURCE_PATH,  'data', 'archive-6')
 
-def data_reallocate(base_path: str, source_path: str):
 
+
+def data_reallocate(source_path: str, base_path: str) -> None:
+    """
+    Moves all audio .wav files from innter folders of each speaker to main /data folder
+    and deletes empty speaker folders
+    
+    Args:
+        source_path (str): Main directory path where all files are stored(src, data, etc.)
+        base_path (str): Path of downloaded raw audio files
+      
+    """    
+    
     base_path = os.path.join(source_path, 'data', 'archive-6')
     for actor_folder in os.listdir(base_path):
         actor_path = os.path.join(base_path, actor_folder)
@@ -23,5 +34,6 @@ def data_reallocate(base_path: str, source_path: str):
     shutil.rmtree(os.path.join(source_path, 'data', 'archive-6'))
     
     
+    
 if __name__ == '__main__':
-    reallocate_data()
+    data_reallocate(SOURCE_PATH, BASE_PATH)
